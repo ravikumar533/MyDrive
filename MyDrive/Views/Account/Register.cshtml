@@ -31,6 +31,18 @@
                     @Html.PasswordFor(m => m.ConfirmPassword, new {@class = "form-control"})
                 </div>
             </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new {@class = "col-md-12 control-label", style = "text-align:left !important;"})
+                <div class="col-md-12">
+                    @Html.PasswordFor(m => m.FirstName, new { @class = "form-control" })
+                </div>
+            </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-12 control-label", style = "text-align:left !important;" })
+        <div class="col-md-12">
+            @Html.PasswordFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+    </div>
             @*<div class="form-group">
                 @Html.LabelFor(m => m.RoleList, new { @class = "col-md-5 control-label", style = "text-align:left !important;" })
                 <div class="col-md-12">

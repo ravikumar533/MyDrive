@@ -88,11 +88,13 @@ namespace MyDrive.Models
         //[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Verifiering av lösenord misslyckades, lösenorden matchar inte.")]
         public string ConfirmPassword { get; set; }
 
-        //[Required]
-        [Display(Name = "User Role")]
-        public string RoleName { get; set; }
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
 
-        public SelectList RoleList { get; set; }
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
     }
 
     public class ResetPasswordViewModel

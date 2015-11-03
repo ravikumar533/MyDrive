@@ -5,7 +5,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MyDrive.EFModels;
 using MyDrive.Models;
+using MyDrive.Repository;
 
 namespace MyDrive.Controllers
 {
@@ -14,17 +16,17 @@ namespace MyDrive.Controllers
     {
         private readonly ApplicationSignInManager _signInManager;
         private readonly ApplicationUserManager _userManager;
-        private readonly ApplicationRoleManager _roleManager;
+        private IDriverepo _repo;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)//, IFortumrepo fortumRepo )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,IDriverepo Repo)//, IFortumrepo fortumRepo )
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
+            _repo = Repo;
         }
 
 
@@ -68,7 +70,7 @@ namespace MyDrive.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var model = new RegisterViewModel { RoleList = new SelectList(_roleManager.Roles, "Id", "Name") };
+            var model = new RegisterViewModel ();
             return View(model);
         }
 
@@ -87,15 +89,15 @@ namespace MyDrive.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // add role to the User
-                    var role = _roleManager.Roles.Single(s => s.Name == "User");
-                    if (role != null)
-                        result = await _userManager.AddToRoleAsync(user.Id, role.Name);
-                    if (!result.Succeeded) AddErrors(result);
-                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    // Send Email
-                  
-
+                    var userInfo = new User
+                    {
+                        UserId = user.Id,
+                        Email = user.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    };
+                    _repo.PrepareSubmit(userInfo);
+                    _repo.PrepareSaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
 

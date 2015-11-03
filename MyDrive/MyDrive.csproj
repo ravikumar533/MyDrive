@@ -255,6 +255,21 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="EFModels\AspNetRole.cs">
+      <DependentUpon>DrivingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\AspNetUser.cs">
+      <DependentUpon>DrivingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\AspNetUserClaim.cs">
+      <DependentUpon>DrivingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\AspNetUserLogin.cs">
+      <DependentUpon>DrivingDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\C__MigrationHistory.cs">
+      <DependentUpon>DrivingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFModels\DrivingDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -270,6 +285,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DrivingDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EFModels\User.cs">
+      <DependentUpon>DrivingDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +296,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Repository\Authrepo.cs" />
+    <Compile Include="Repository\DriveRepo.cs" />
+    <Compile Include="Repository\IAuthRepo.cs" />
+    <Compile Include="Repository\IDriverepo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

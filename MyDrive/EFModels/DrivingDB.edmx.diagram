@@ -4,7 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fb3ae7312c714741888296f567485c0a" Name="Diagram1" />
+      <Diagram DiagramId="fb3ae7312c714741888296f567485c0a" Name="Diagram1" >
+        <EntityTypeShape EntityType="MyDriveModel.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MyDriveModel.AspNetRole" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="MyDriveModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="MyDriveModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="MyDriveModel.AspNetUser" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="MyDriveModel.User" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="MyDriveModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MyDriveModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="MyDriveModel.FK_User_AspNetUsers" />
+        <AssociationConnector Association="MyDriveModel.AspNetUserRoles" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
