@@ -7,6 +7,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using MyDrive.Controllers;
+using MyDrive.Repository;
 
 namespace MyDrive.App_Start
 {
@@ -50,12 +51,14 @@ namespace MyDrive.App_Start
             // GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
             container.RegisterType<IRoleStore<IdentityRole, string>, RoleStore<IdentityRole>>(
             new InjectionConstructor(typeof(ApplicationDbContext)));
-            
+
+            container.RegisterType<IDriverepo, DriveRepo>();
+
             container.RegisterType<AccountController>(
                 new InjectionConstructor(
                     typeof(ApplicationUserManager),
                     typeof(ApplicationSignInManager),
-                    typeof(ApplicationRoleManager)));
+                    typeof(IDriverepo)));
             // TODO: Register your types here
             // container.RegisterType<IProductRepository, ProductRepository>();
         }
